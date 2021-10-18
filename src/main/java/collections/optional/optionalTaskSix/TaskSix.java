@@ -1,4 +1,4 @@
-package collections.optinalTaskSix;
+package collections.optional.optionalTaskSix;
 
 import java.io.File;
 import java.io.FileNotFoundException;
