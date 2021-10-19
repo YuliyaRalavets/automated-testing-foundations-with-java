@@ -1,0 +1,6 @@
+Garlic 70
+dill 10
+carrot 40
+Radish 20
+cucumber 80
+Garlic 70
