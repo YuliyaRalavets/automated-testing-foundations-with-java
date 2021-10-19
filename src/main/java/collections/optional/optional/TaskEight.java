@@ -1,4 +1,4 @@
-package collections.optional.optionalTaskEight;
+package collections.optional.optional;
 
 import java.io.File;
 import java.io.FileNotFoundException;
