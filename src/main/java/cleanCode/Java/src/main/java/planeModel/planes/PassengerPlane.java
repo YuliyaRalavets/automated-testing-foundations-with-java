@@ -14,7 +14,7 @@ public class PassengerPlane extends Plane {
         this.passengersCapacity = passengersCapacity;
     }
 
-    public PassengerPlane(PlaneProducer model, int passengersCapacity){
+    public PassengerPlane(PlaneProducer model, int passengersCapacity) {
         super(model);
         this.passengersCapacity = passengersCapacity;
     }

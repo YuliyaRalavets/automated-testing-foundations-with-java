@@ -15,7 +15,7 @@ public class MilitaryPlane extends Plane {
         this.militaryType = militaryType;
     }
 
-    public MilitaryPlane(PlaneProducer producer, MilitaryType militaryType){
+    public MilitaryPlane(PlaneProducer producer, MilitaryType militaryType) {
         super(producer);
         this.militaryType = militaryType;
     }

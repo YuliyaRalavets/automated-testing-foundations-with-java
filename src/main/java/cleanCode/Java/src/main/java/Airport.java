@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @autor Vitali Shulha
  * @version 1.1
+ * @autor Vitali Shulha
  */
 
 public class Airport {
