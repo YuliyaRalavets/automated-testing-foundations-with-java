@@ -3,19 +3,20 @@ package classes.mainTask;
 public class Product {
     private int id;
     private String name;
-    private int UPC;
+    private long upc;
     private String manufacturer;
     private double price;
-    private int selfLife;
+    private  int selfLife;
     private int quantity;
+
 
     public Product() {
     }
 
-    public Product(int id, String name, int UPC, String manufacturer, double price, int selfLife, int quantity) {
+    public Product(int id, String name, long upc, String manufacturer, double price, int selfLife, int quantity) {
         this.id = id;
         this.name = name;
-        this.UPC = UPC;
+        this.upc = upc;
         this.manufacturer = manufacturer;
         this.price = price;
         this.selfLife = selfLife;
@@ -38,12 +39,12 @@ public class Product {
         this.name = name;
     }
 
-    public int getUPC() {
-        return UPC;
+    public long getUpc() {
+        return upc;
     }
 
-    public void setUPC(int UPC) {
-        this.UPC = UPC;
+    public void setUpc(int upc) {
+        this.upc = upc;
     }
 
     public String getManufacturer() {
@@ -80,8 +81,9 @@ public class Product {
 
     @Override
     public String toString() {
-        return " id = " + getId() + "; " + "name = " + getName() + "; " + "UPC = " + getUPC() + "; "
+        return " id = " + getId() + "; " + "name = " + getName() + "; " + "upc = " + getUpc() + "; "
                 + "manufacturer = " + getManufacturer() + "; " + "price = " + getPrice() + "; "
                 + "selfLife = " + getSelfLife() + " days; " + "quantity = " + getQuantity() + ".";
     }
 }
+
