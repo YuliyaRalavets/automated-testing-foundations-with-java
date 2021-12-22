@@ -27,6 +27,7 @@ import collections.main.vegetable.tuberVegetable.SweetPotato;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Kitchen {
@@ -227,7 +228,7 @@ public class Kitchen {
         }
     }
 
-    private void addBulOnion(){
+    private void addBulOnion() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = scanner.nextDouble();
         chiefSalad.addNewIngredient(new BulbOnion(chiefWeight));
