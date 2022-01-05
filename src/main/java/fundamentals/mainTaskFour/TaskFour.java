@@ -25,28 +25,17 @@ public class TaskFour {
             System.out.println("Should be at least two numbers!");
         } else {
             String[] massOfNumbers = inputLine.split(" ");
-            for (String element : massOfNumbers) {
-                if (element.contains("-") && element.indexOf("-") != 0) {
+            for (String stringNumber : massOfNumbers) {
+                if (stringNumber.contains("-") && stringNumber.indexOf("-") != 0) {
                     System.out.println("Incorrect input data!");
                     return;
+                } else {
+                    number = Integer.parseInt(stringNumber);
+                    sum += number;
+                    multiplication *= number;
                 }
-            }
-            for (String stringNumber : massOfNumbers) {
-                number = Integer.parseInt(stringNumber);
-                sum += number;
-                multiplication *= number;
             }
             System.out.println("The sum is " + sum + "\n" + "The multiplication is " + multiplication);
         }
-        /*int sum = 0;
-        int mult = 1;
-        if (args.length >= 2) {
-            for (String arg : args) {
-                sum += Integer.parseInt(arg.trim());
-                mult *= Integer.parseInt(arg.trim());
-            }
-            System.out.println("Sum is " + sum);
-            System.out.println("Multiplication is " + mult);
-        } else System.out.println("Should be at least two arguments!");*/
     }
 }
