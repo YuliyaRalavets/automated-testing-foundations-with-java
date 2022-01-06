@@ -35,21 +35,21 @@ public class Kitchen {
     private String menuNumber;
     private Scanner scanner = new Scanner(System.in);
 
-    private String getChiefName(){
+    private String getChiefName() {
         return chiefName;
     }
 
-    private void setChiefName(String chiefName){
+    private void setChiefName(String chiefName) {
         this.chiefName = chiefName;
     }
 
-    public void mainMenu(){
+    public void mainMenu() {
         System.out.println("< MAIN >");
         inputChiefName();
         System.out.println("Hello " + getChiefName() + ", choose one of the menu items:");
         pintMainMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     loadSalad();
                     createMenu();
@@ -68,119 +68,119 @@ public class Kitchen {
         }
     }
 
-    private void inputChiefName(){
+    private void inputChiefName() {
         System.out.println("Input your name:");
         setChiefName(scanner.nextLine());
     }
 
-    private void pintMainMenu(){
+    private void pintMainMenu() {
         System.out.println("1. Load salad from file;");
         System.out.println("2. Create a new salad;");
         System.out.println("3. Exit");
     }
 
-    private void loadSalad(){
+    private void loadSalad() {
         String vegName;
         double vegWeight;
         String line;
         String fileName = "";
         System.out.println("Enter the file name:");
-        while (scanner.hasNextLine()){
+        while (scanner.hasNextLine()) {
             Scanner scannerForFileName = new Scanner(System.in);
             fileName = scannerForFileName.nextLine();
             if (fileName.length() == 0)
                 System.out.println("You didn't enter a file name! Try it again!");
             else break;
         }
-        try(Scanner scannerForFile = new Scanner(new FileReader(fileName + ".txt"))){
+        try (Scanner scannerForFile = new Scanner(new FileReader(fileName + ".txt"))) {
             chiefSalad = new Salad(fileName);
-            while (scannerForFile.hasNext()){
+            while (scannerForFile.hasNext()) {
                 line = scannerForFile.nextLine();
                 vegName = line.toLowerCase().substring(0, line.lastIndexOf(" "));
-                vegWeight = Double.parseDouble(line.substring(line.lastIndexOf(" ") +1));
-                switch (vegName){
-                    case "bulbonion" :
+                vegWeight = Double.parseDouble(line.substring(line.lastIndexOf(" ") + 1));
+                switch (vegName) {
+                    case "bulbonion":
                         chiefSalad.addNewIngredient(new BulbOnion(vegWeight));
                         break;
-                    case "garlic" :
+                    case "garlic":
                         chiefSalad.addNewIngredient(new Garlic(vegWeight));
                         break;
-                    case "leek" :
+                    case "leek":
                         chiefSalad.addNewIngredient(new Leek(vegWeight));
                         break;
-                    case "shallot" :
+                    case "shallot":
                         chiefSalad.addNewIngredient(new Shallot(vegWeight));
                         break;
-                    case "broccoli" :
+                    case "broccoli":
                         chiefSalad.addNewIngredient(new Broccoli(vegWeight));
                         break;
-                    case "brusselssprouts" :
+                    case "brusselssprouts":
                         chiefSalad.addNewIngredient(new BrusselsSprouts(vegWeight));
                         break;
-                    case "cauliflower" :
+                    case "cauliflower":
                         chiefSalad.addNewIngredient(new Cauliflower(vegWeight));
                         break;
-                    case "cucumber" :
+                    case "cucumber":
                         chiefSalad.addNewIngredient(new Cucumber(vegWeight));
                         break;
-                    case "pumpkin" :
+                    case "pumpkin":
                         chiefSalad.addNewIngredient(new Pumpkin(vegWeight));
                         break;
-                    case "squash" :
+                    case "squash":
                         chiefSalad.addNewIngredient(new Squash(vegWeight));
                         break;
-                    case "chiliPepper" :
+                    case "chiliPepper":
                         chiefSalad.addNewIngredient(new ChiliPepper(vegWeight));
                         break;
-                    case "pepper" :
+                    case "pepper":
                         chiefSalad.addNewIngredient(new Pepper(vegWeight));
                         break;
-                    case "tomato" :
+                    case "tomato":
                         chiefSalad.addNewIngredient(new Tomato(vegWeight));
                         break;
-                    case "carrot" :
+                    case "carrot":
                         chiefSalad.addNewIngredient(new Carrot(vegWeight));
                         break;
-                    case "radish" :
+                    case "radish":
                         chiefSalad.addNewIngredient(new Radish(vegWeight));
                         break;
-                    case "headSalad" :
+                    case "headSalad":
                         chiefSalad.addNewIngredient(new HeadSalad(vegWeight));
                         break;
-                    case "lettuce" :
+                    case "lettuce":
                         chiefSalad.addNewIngredient(new Lettuce(vegWeight));
                         break;
-                    case "basil" :
+                    case "basil":
                         chiefSalad.addNewIngredient(new Basil(vegWeight));
                         break;
-                    case "dill" :
+                    case "dill":
                         chiefSalad.addNewIngredient(new Dill(vegWeight));
                         break;
-                    case "oregano" :
+                    case "oregano":
                         chiefSalad.addNewIngredient(new Oregano(vegWeight));
                         break;
-                    case "parsley" :
+                    case "parsley":
                         chiefSalad.addNewIngredient(new Parsley(vegWeight));
                         break;
-                    case "potato" :
+                    case "potato":
                         chiefSalad.addNewIngredient(new Potato(vegWeight));
                         break;
-                    case "sweetpotato" :
+                    case "sweetpotato":
                         chiefSalad.addNewIngredient(new SweetPotato(vegWeight));
                         break;
                     default:
                         System.out.println("There is no " + vegName + " in the list of available vegetableTypes.");
                 }
             }
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("The specified file cannot be found.");
             System.exit(0);
         }
     }
 
-    private void createMenu(){
+    private void createMenu() {
         printShowMenu();
-        while (scanner.hasNext()){
+        while (scanner.hasNext()) {
             switch (menuNumber = scanner.next()) {
                 case "1":
                     addVegetableToSalad();
@@ -212,7 +212,7 @@ public class Kitchen {
         }
     }
 
-    private void printShowMenu(){
+    private void printShowMenu() {
         System.out.println("\nChoose one of the options:");
         System.out.println("1. Add vegetableTypes to salad;");
         System.out.println("2. Show all ingredients of salad;");
@@ -224,10 +224,10 @@ public class Kitchen {
         System.out.println("8. Exit");
     }
 
-    private void addVegetableToSalad(){
+    private void addVegetableToSalad() {
         printAddVegetableToSaladMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     bulbousVegetable();
                     break;
@@ -264,7 +264,7 @@ public class Kitchen {
         }
     }
 
-    private void printAddVegetableToSaladMenu(){
+    private void printAddVegetableToSaladMenu() {
         System.out.println("\nChoose one of the vegetableTypes types:");
         System.out.println("1. BulbousVegetable;");
         System.out.println("2. CabbageVegetable;");
@@ -278,10 +278,10 @@ public class Kitchen {
         System.out.println("10. Exit");
     }
 
-    private void bulbousVegetable(){
+    private void bulbousVegetable() {
         printBulbousVegetableMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     addBulOnion();
                     break;
@@ -306,7 +306,7 @@ public class Kitchen {
         }
     }
 
-    private void printBulbousVegetableMenu(){
+    private void printBulbousVegetableMenu() {
         System.out.println("\nChoose one of the BulbousVegetable:");
         System.out.println("1. BulbOnion");
         System.out.println("2. Garlic");
@@ -323,7 +323,7 @@ public class Kitchen {
     }
 
     private double checkCorrectnessOfDoubleNumberInput(double inputNumber) {
-        while (scanner.hasNext()){
+        while (scanner.hasNext()) {
             if (scanner.hasNextDouble()) {
                 inputNumber = scanner.nextDouble();
                 if (inputNumber < 0)
@@ -337,28 +337,28 @@ public class Kitchen {
         return inputNumber;
     }
 
-    private void addGarlic(){
+    private void addGarlic() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Garlic(chiefWeight));
     }
 
-    private void addLeek(){
+    private void addLeek() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Leek(chiefWeight));
     }
 
-    private void addShallot(){
+    private void addShallot() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Shallot(chiefWeight));
     }
 
-    private void cabbageVegetable(){
+    private void cabbageVegetable() {
         printCabbageVegetableMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     addBroccoli();
                     break;
@@ -380,7 +380,7 @@ public class Kitchen {
         }
     }
 
-    private void printCabbageVegetableMenu(){
+    private void printCabbageVegetableMenu() {
         System.out.println("\nChoose one of the CabbageVegetable:");
         System.out.println("1. Broccoli");
         System.out.println("2. BrusselsSprouts");
@@ -389,28 +389,28 @@ public class Kitchen {
         System.out.println("5. Exit");
     }
 
-    private void addBroccoli(){
+    private void addBroccoli() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Broccoli(chiefWeight));
     }
 
-    private void addBrusselsSprouts(){
+    private void addBrusselsSprouts() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new BrusselsSprouts(chiefWeight));
     }
 
-    private void addCauliflower(){
+    private void addCauliflower() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Cauliflower(chiefWeight));
     }
 
-    private void melonsVegetable(){
+    private void melonsVegetable() {
         printMelonsVegetableMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     addCucumber();
                     break;
@@ -432,7 +432,7 @@ public class Kitchen {
         }
     }
 
-    private void printMelonsVegetableMenu(){
+    private void printMelonsVegetableMenu() {
         System.out.println("\nChoose one of the MelonsVegetable:");
         System.out.println("1. Cucumber");
         System.out.println("2. Pumpkin");
@@ -441,28 +441,28 @@ public class Kitchen {
         System.out.println("5. Exit");
     }
 
-    private void addCucumber(){
+    private void addCucumber() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Cucumber(chiefWeight));
     }
 
-    private void addPumpkin(){
+    private void addPumpkin() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Pumpkin(chiefWeight));
     }
 
-    private void addSquash(){
+    private void addSquash() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Squash(chiefWeight));
     }
 
-    private void nightshadeVegetable(){
+    private void nightshadeVegetable() {
         printNightshadeVegetableMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     addChiliPepper();
                     break;
@@ -484,7 +484,7 @@ public class Kitchen {
         }
     }
 
-    private void printNightshadeVegetableMenu(){
+    private void printNightshadeVegetableMenu() {
         System.out.println("\nChoose one of the NightshadeVegetable:");
         System.out.println("1. ChiliPepper");
         System.out.println("2. Pepper");
@@ -493,28 +493,28 @@ public class Kitchen {
         System.out.println("5. Exit");
     }
 
-    private void addChiliPepper(){
+    private void addChiliPepper() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new ChiliPepper(chiefWeight));
     }
 
-    private void addPepper(){
+    private void addPepper() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Pepper(chiefWeight));
     }
 
-    private void addTomato(){
+    private void addTomato() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Tomato(chiefWeight));
     }
 
-    private void rootVegetable(){
+    private void rootVegetable() {
         printRootVegetableMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     addCarrot();
                     break;
@@ -532,7 +532,7 @@ public class Kitchen {
         }
     }
 
-    private void printRootVegetableMenu(){
+    private void printRootVegetableMenu() {
         System.out.println("\nChoose one of the RootVegetable:");
         System.out.println("1. Carrot");
         System.out.println("2. Radish");
@@ -540,22 +540,22 @@ public class Kitchen {
         System.out.println("4. Exit");
     }
 
-    private void addCarrot(){
+    private void addCarrot() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Carrot(chiefWeight));
     }
 
-    private void addRadish(){
+    private void addRadish() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Radish(chiefWeight));
     }
 
-    private void saladVegetable(){
+    private void saladVegetable() {
         printSaladVegetableMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     addHeadSalad();
                     break;
@@ -574,7 +574,7 @@ public class Kitchen {
         }
     }
 
-    private void printSaladVegetableMenu(){
+    private void printSaladVegetableMenu() {
         System.out.println("\nChoose one of the SaladVegetable:");
         System.out.println("1. HeadSalad");
         System.out.println("2. Lettuce");
@@ -582,22 +582,22 @@ public class Kitchen {
         System.out.println("4. Exit");
     }
 
-    private void addHeadSalad(){
+    private void addHeadSalad() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new HeadSalad(chiefWeight));
     }
 
-    private void addLettuce(){
+    private void addLettuce() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Lettuce(chiefWeight));
     }
 
-    private void spicyVegetable(){
+    private void spicyVegetable() {
         printSpicyVegetableMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     addBasil();
                     break;
@@ -623,7 +623,7 @@ public class Kitchen {
 
     }
 
-    private void printSpicyVegetableMenu(){
+    private void printSpicyVegetableMenu() {
         System.out.println("\nChoose one of the SpicyVegetable:");
         System.out.println("1. Basil;");
         System.out.println("2. Dill;");
@@ -633,34 +633,34 @@ public class Kitchen {
         System.out.println("6. Exit.");
     }
 
-    private void addBasil(){
+    private void addBasil() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Basil(chiefWeight));
     }
 
-    private void addDill(){
+    private void addDill() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Dill(chiefWeight));
     }
 
-    private void addOregano(){
+    private void addOregano() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Oregano(chiefWeight));
     }
 
-    private void addParsley(){
+    private void addParsley() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Parsley(chiefWeight));
     }
 
-    private void tuberVegetable(){
+    private void tuberVegetable() {
         printTuberVegetableMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     addPotato();
                     break;
@@ -679,7 +679,7 @@ public class Kitchen {
         }
     }
 
-    private void printTuberVegetableMenu(){
+    private void printTuberVegetableMenu() {
         System.out.println("\nChoose one of the TuberVegetable:");
         System.out.println("1. Potato;");
         System.out.println("2. SweetPotato;");
@@ -687,22 +687,22 @@ public class Kitchen {
         System.out.println("4. Exit.");
     }
 
-    private void addPotato(){
+    private void addPotato() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new Potato(chiefWeight));
     }
 
-    private void addSweetPotato(){
+    private void addSweetPotato() {
         System.out.println("Enter the required weight in grams:");
         chiefWeight = checkCorrectnessOfDoubleNumberInput(chiefWeight);
         chiefSalad.addNewIngredient(new SweetPotato(chiefWeight));
     }
 
-    private void showAllIngredientsOfSalad(){
+    private void showAllIngredientsOfSalad() {
         printShowAllIngredientsOfSaladMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     chiefSalad.showAllIngredient();
                     break;
@@ -718,17 +718,17 @@ public class Kitchen {
         }
     }
 
-    private void printShowAllIngredientsOfSaladMenu(){
+    private void printShowAllIngredientsOfSaladMenu() {
         System.out.println("\nChoose one of the options:");
         System.out.println("1. Show all ingredients of salad;");
         System.out.println("2. To previous page;");
         System.out.println("3. Exit");
     }
 
-    private void sortVegetablesInSaladByWeight(){
+    private void sortVegetablesInSaladByWeight() {
         printSortVegetablesInSaladByWeightMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     chiefSalad.sortByWeight();
                     break;
@@ -744,17 +744,17 @@ public class Kitchen {
         }
     }
 
-    private void printSortVegetablesInSaladByWeightMenu(){
+    private void printSortVegetablesInSaladByWeightMenu() {
         System.out.println("\nChoose one of the options:");
         System.out.println("1. Sort vegetableTypes in salad by weight;");
         System.out.println("2. To previous page;");
         System.out.println("3. Exit");
     }
 
-    private void sortVegetablesInSaladByCalories(){
+    private void sortVegetablesInSaladByCalories() {
         printSortVegetablesInSaladByCaloriesMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     chiefSalad.sortByKcal();
                 case "2":
@@ -769,17 +769,17 @@ public class Kitchen {
         }
     }
 
-    private void printSortVegetablesInSaladByCaloriesMenu(){
+    private void printSortVegetablesInSaladByCaloriesMenu() {
         System.out.println("\nChoose one of the options:");
         System.out.println("1. Sort vegetableTypes in salad by calories;");
         System.out.println("2. To previous page;");
         System.out.println("3. Exit");
     }
 
-    private void sortVegetablesInSaladByTotalVegetablesCalories(){
+    private void sortVegetablesInSaladByTotalVegetablesCalories() {
         printSortVegetablesInSaladByTotalVegetablesCaloriesMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     chiefSalad.sortByTotalVegetableKcal();
                     break;
@@ -795,17 +795,17 @@ public class Kitchen {
         }
     }
 
-    private void printSortVegetablesInSaladByTotalVegetablesCaloriesMenu(){
+    private void printSortVegetablesInSaladByTotalVegetablesCaloriesMenu() {
         System.out.println("\nChoose one of the options:");
         System.out.println("1. Sort vegetableTypes in salad by total vegetableTypes calories;");
         System.out.println("2. To previous page;");
         System.out.println("3. Exit");
     }
 
-    private void getVegetablesFromSaladInCalorieRang(){
+    private void getVegetablesFromSaladInCalorieRang() {
         printGetVegetablesFromSaladInCalorieRangMenu();
-        while (scanner.hasNext()){
-            switch (menuNumber = scanner.next()){
+        while (scanner.hasNext()) {
+            switch (menuNumber = scanner.next()) {
                 case "1":
                     getVegetablesInCalorieRang();
                     break;
@@ -821,14 +821,14 @@ public class Kitchen {
         }
     }
 
-    private void printGetVegetablesFromSaladInCalorieRangMenu(){
+    private void printGetVegetablesFromSaladInCalorieRangMenu() {
         System.out.println("\nChoose one of the options:");
         System.out.println("1. Get vegetableTypes from a salad in the calorie rang;");
         System.out.println("2. To previous page;");
         System.out.println("3. Exit");
     }
 
-    private void getVegetablesInCalorieRang(){
+    private void getVegetablesInCalorieRang() {
         double lower = 0.0;
         double upper = 0.0;
         while (scanner.hasNextLine()) {
@@ -836,21 +836,18 @@ public class Kitchen {
             lower = checkCorrectnessOfDoubleNumberInput(lower);
             System.out.println("Enter the upper limit of calories:");
             upper = checkCorrectnessOfDoubleNumberInput(upper);
-            if (lower < upper) {
-                chiefSalad.findVegetableByKcal(lower, upper);
-            } else {
-                System.out.println("WWW");
-                break;
-            }
+            if (lower > upper)
+                System.out.println("Lower limit must be less than the upper! Try it again!");
+            else break;
         }
-
+        chiefSalad.findVegetableByKcal(lower, upper);
     }
 
-    private void createNewSalad(){
+    private void createNewSalad() {
         String saladName = "";
         System.out.println("< Create a new salad >");
         System.out.println("Input salad name:");
-        while (scanner.hasNextLine()){
+        while (scanner.hasNextLine()) {
             Scanner scannerForNewSalad = new Scanner(System.in);
             saladName = scannerForNewSalad.nextLine();
             if (saladName.length() == 0)

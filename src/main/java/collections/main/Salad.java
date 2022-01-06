@@ -1,12 +1,12 @@
 package collections.main;
 
-import collections.main.vegetableTypes.Vegetable;
+        import collections.main.vegetableTypes.Vegetable;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+        import java.util.Comparator;
+        import java.util.HashMap;
+        import java.util.Map;
 
-public class Salad{
+public class Salad {
     private String name;
     private Map<String, Vegetable> map = new HashMap<>();
 
@@ -41,10 +41,14 @@ public class Salad{
         }
     }
 
-    public double totalSaladCalories(){
+    public double totalSaladCalories() {
         double calories = 0.0;
-        for(Map.Entry<String, Vegetable> v : map.entrySet()){
-            calories += v.getValue().totalVegetableCalories();
+        if (map == null || map.isEmpty()) {
+            System.out.println("No ingredients in the salad.");
+        } else {
+            for (Map.Entry<String, Vegetable> v : map.entrySet()) {
+                calories += v.getValue().totalVegetableCalories();
+            }
         }
         return calories;
     }
