@@ -109,7 +109,7 @@ public class ProductCatalog {
             return;
         }
         if (products.length == 0) {
-            System.out.println("There is no no matching products!");
+            System.out.println("There is no matching products!");
             return;
         }
         for (Product product : products) {
