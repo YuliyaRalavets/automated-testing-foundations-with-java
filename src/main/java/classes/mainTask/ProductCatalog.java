@@ -2,7 +2,7 @@ package classes.mainTask;
 
 import java.util.Arrays;
 
-public class ProductCatalog{
+public class ProductCatalog {
     private final static int SIZE_BY_DEFAULT = 8;
     private Product[] products;
     private int size;
@@ -60,6 +60,7 @@ public class ProductCatalog{
         return 0;
     }
 
+
     public void clearAll(){
         products = new Product[SIZE_BY_DEFAULT];
         size = 0;
@@ -73,7 +74,7 @@ public class ProductCatalog{
         Product[] productByName = new Product[size];
         int quantity = 0;
         for (int i = 0; i < size; i++){
-            if (name.equals(products[i].getName())) {
+            if (name.toLowerCase().equals(products[i].getName().toLowerCase())) {
                 productByName[quantity++] = products[i];
             }
         }
@@ -84,7 +85,7 @@ public class ProductCatalog{
         Product[] productCorrectPrice = new Product[size];
         int quantity = 0;
         for (int i = 0; i < size; i++){
-            if (name.equals(products[i].getName()) && price >= products[i].getPrice()) {
+            if (name.toLowerCase().equals(products[i].getName().toLowerCase()) && price >= products[i].getPrice()) {
                 productCorrectPrice[quantity++] = products[i];
             }
         }
@@ -101,4 +102,21 @@ public class ProductCatalog{
         }
         return Arrays.copyOf(productSelfLife, quantity);
     }
+
+    public void printCatalog(Product[] products) {
+        if (products == null) {
+            System.out.println("There is no products in catalog!");
+            return;
+        }
+        if (products.length == 0) {
+            System.out.println("There is no no matching products!");
+            return;
+        }
+        for (Product product : products) {
+            System.out.println(product);
+        }
+    }
 }
+
+
+
