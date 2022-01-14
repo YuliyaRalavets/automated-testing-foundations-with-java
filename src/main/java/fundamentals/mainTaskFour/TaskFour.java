@@ -21,7 +21,7 @@ public class TaskFour {
             }
         }
 
-        if (inputLine.length() < 2) {
+        if (inputLine.split(" ").length < 2) {
             System.out.println("Should be at least two numbers!");
         } else {
             String[] massOfNumbers = inputLine.split(" ");
