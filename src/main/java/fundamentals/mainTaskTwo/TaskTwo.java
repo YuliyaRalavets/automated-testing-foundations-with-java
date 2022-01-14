@@ -5,9 +5,15 @@ import java.util.Scanner;
 public class TaskTwo {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        StringBuilder inputLine = new StringBuilder(scanner.nextLine());
-        if (!(inputLine.length() == 0)){
-            System.out.println(inputLine.reverse());
-        } else System.out.println("No data for input!");
+        System.out.println("Input at least two arguments using space as a delimiter:");
+        String s = scanner.nextLine();
+        String[] mass = s.split(" ");
+        if (mass.length < 2)
+            System.out.println("Should be at least two arguments!");
+        else {
+            for (int i = mass.length - 1; i >= 0; i--) {
+                System.out.print(mass[i] + " ");
+            }
+        }
     }
 }
