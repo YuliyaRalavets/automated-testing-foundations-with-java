@@ -1,45 +1,49 @@
 package IO.optional;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class CreatorDirAndFile {
     private String dirName;
-    private String fileName;
 
-    public CreatorDirAndFile(String dirName, String fileName) {
+    public CreatorDirAndFile(String dirName) {
         this.dirName = dirName;
-        this.fileName = fileName;
-        createDirToWrite(dirName);
-        //createFileToWrite(fileName);
-
+        createDirAndFileForWrite(dirName);
     }
 
-    private void createDirToWrite(String dirName){
+    private void createDirAndFileForWrite(String dirName){
         try {
             if (Files.exists(Paths.get(dirName)))
-                System.out.println("ужо есць");
-            else Files.createDirectory(Paths.get(dirName));
+                System.out.println("Directory with this name is already exist.");
+            else {
+                Files.createDirectory(Paths.get(dirName));
+                Files.createFile(fileForWritePath());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void createFileToWrite(String fileName){
-        //Path file = Paths.get(dirName + File.separator + fileName);
-        try {
-            if (Files.exists(fileForWritePath()))
-            System.out.println("ужо есць");
-            else Files.createFile(fileForWritePath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Path fileForWritePath(){
+    private Path fileForWritePath(){
+        String fileName = "file.txt";
         return Paths.get(dirName + File.separator + fileName);
+    }
+
+    public void writeToFile(List<String> list){
+        Charset charset = Charset.forName("UTF-8");
+        try (BufferedWriter writer = Files.newBufferedWriter(fileForWritePath(), charset)) {
+            for (String num : list) {
+                writer.write(num);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
