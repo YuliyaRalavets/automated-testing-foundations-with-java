@@ -1,9 +1,8 @@
 package IO;
 
-import java.io.BufferedWriter;
+
 import java.io.File;
 import java.io.IOException;
-import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +22,6 @@ public class MainTask {
     }
 
     public static void printTree(Path path, String mask) throws IOException {
-       // try(Writer writer = new BufferedWriter(Files.newBufferedWriter()))
         System.out.println(path.getFileName());
         if (path.toFile().isDirectory()) {
             List<Path> paths = Files.list(path)
