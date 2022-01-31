@@ -1,126 +1,105 @@
 package IO;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.time.Instant;
-import java.util.List;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MainTask {
     public static void main(String[] args) {
-        /*File dir1 = new File("D://YULIYA");
-        File file1 = new File("D://YULIYA", "Hello.txt");
-        File file2 = new File(dir1, "Hello2.txt");
-        if(dir1.isDirectory())
-        {
-            // получаем все вложенные объекты в каталоге
-            for(File item : dir1.listFiles()){
 
-                if(item.isDirectory()){
-
-                    System.out.println(item.getName() + "  \t folder");
-                }
-                else{
-
-                    System.out.println(item.getName() + "\t file");
-                }
-            }
-        }
-
-        System.out.println("++++++++++++++++++++++++++++++++++");
-
-        File dir = new File("D://YULIYA//NewDir");
-        boolean created = dir.mkdir();
-        if(created)
-            System.out.println("Folder has been created");
-        // переименуем каталог
-        File newDir = new File("D://YULIYA//NewDirRenamed");
-        dir.renameTo(newDir);
-        // удалим каталог
-        boolean deleted = newDir.delete();
-        if(deleted)
-            System.out.println("Folder has been deleted");*/
-
-        File file = new File("D:/YULIYA/aircompany");
-        Path path = file.toPath();
-        if (Files.exists(path) && Files.isDirectory(path)) {
-            int maxDepth = 2;
-            try (Stream<Path> streamDir = Files.find(path, maxDepth,
-                    (p, a) -> String.valueOf(p).endsWith(".java"))) {
-                long counter = streamDir
-                        .map(String::valueOf)
-                        .peek(System.out::println)
-                        .count();
-                System.out.println("found: " + counter);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-       /* DirTree dir = new DirTree(path);
-        dir.showTree();*/
-
-
-
-        int maxDepth = 2;
+       MainTask mainTask = new MainTask();
         try {
-            Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
-                @Override
-                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-                    System.out.println("Start      "  + dir.toFile().getName());
-                    System.out.println("|--" + dir.toFile().getName());
-                    return FileVisitResult.CONTINUE;
-                }
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                    System.out.println("     " + file.toFile().getName());
-                    return FileVisitResult.CONTINUE;
-                }
-
-                @Override
-                public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-                    System.out.println("fin+++++++++++++++++++++++++++++     "  + dir.toFile().getName());
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-            DirectoryStream.Filter<Path> dirOnly = p -> {  // Functional Interface : boolean accept​(T entry)
-                return Files.isDirectory(p);
-            };
-
-
+            printTree(Paths.get("D:/YULIYA/aircompany"), "");
+            //printTree(Paths.get("D:/!!! ВИДЕООПЕРАТОР !!!/DOC/калыханка"), "");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-       /* File file = new File("D://YULIYA");
-        if (file.exists() && file.isFile()) {
-            System.out.println("Path " + file.getPath());
-            System.out.println("Absolute Path " + file.getAbsolutePath());
-            System.out.println("Size " + file.length());
-            System.out.println("Dir " + file.getParent());
-            file.delete();
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+    public static void printTree(Path path, String mask) throws IOException {
+       // try(Writer writer = new BufferedWriter(Files.newBufferedWriter()))
+        System.out.println(path.getFileName());
+        if (path.toFile().isDirectory()) {
+            List<Path> paths = Files.list(path)
+                    .sorted(Comparator.comparing((Path p) -> p.toFile().isDirectory()).thenComparing(Path::getFileName))
+                    .collect(Collectors.toList());
+            List<Path> dirs = paths.stream().filter(p-> p.toFile().isDirectory()).collect(Collectors.toList());
+            for (int i = 0; i < paths.size(); i++) {
+                if (paths.get(i).toFile().isFile()) {
+                    System.out.printf("%s%s ", mask, dirs.size() == 0 ? " " : "\u2502 ");
+                    printTree(paths.get(i), mask);
+                } else {
+                    System.out.printf("%s%s\u2500\u2500\u2500", mask, i == paths.size() - 1 ? "\u2514" : "\u251c");
+                    printTree(paths.get(i), String.format("%s%s", mask, i == paths.size() - 1 ? "   " : "\u2502   "));
+                }
             }
-        }
-        File dir = new File("D:/YULIYA");
-        if (dir.exists() && dir.isDirectory()) {
-            for (File current : dir.listFiles()) {
-                System.out.println(current.getName());
-                long millis = current.lastModified();
-                Instant date = Instant.ofEpochMilli(millis);
-                //System.out.println(current.getPath());
-            }
-            File root = File.listRoots()[0];
-            System.out.printf("\n%s %,d from %,d free bytes", root.getPath(), root.getUsableSpace(),
-                    root.getTotalSpace());
-        }*/
         }
     }
+
+    private static void infoAboutFile(Path path){
+        long filesCount = 0;
+        long dirsCount = 0;
+        double length = 0;
+        Path parent = path.getParent();
+        int d = path.getNameCount();
+        textInfo(parent,filesCount,dirsCount,length,d);
+    }
+
+    private static void textInfo (Path path, long files, long dirs, double len, int count){
+        long filesCount = files;
+        long dirsCount = dirs;
+        Path root = path.getRoot();
+        //System.out.println();
+        //System.out.println(path);
+        if (root.equals(path)) {
+            filesCount += countOfFilesInPath(path);
+            dirsCount += contOfDirInPath(path);
+            //System.out.println(countOfFilesInPath(path) + " files");
+            //System.out.println(contOfDirInPath(path)+ " dirs");
+            //System.out.println("len " + lengthOfFileName(path));
+            len += lengthOfFileName(path);
+            System.out.println("Total Dir "  + dirsCount);
+            System.out.println("Total Files " + filesCount);
+            //System.out.println("Total file name length is "+ len);
+            System.out.printf("Average length is %.2f", (double)len/filesCount);
+            System.out.printf("\nAverage number of files per folder is %.2f", (double)filesCount/count );
+
+        }else {
+            filesCount += countOfFilesInPath(path);
+            dirsCount += contOfDirInPath(path);
+            //System.out.println(countOfFilesInPath(path) + " files");
+            //System.out.println(contOfDirInPath(path)+ " dirs");
+            //System.out.println(lengthOfFileName(path));
+            len += lengthOfFileName(path);
+            textInfo(path.getParent(),filesCount,dirsCount,len,count);
+        }
+    }
+
+    private static long contOfDirInPath(Path path) {
+        List<File> files = Arrays.stream((path.toFile().listFiles())).collect(Collectors.toList());
+        return files.stream().filter(File::isDirectory).count();
+    }
+
+    private static long countOfFilesInPath(Path path) {
+        List<File> files = Arrays.stream((path.toFile().listFiles())).collect(Collectors.toList());
+        return files.stream().filter(File::isFile).count();
+    }
+
+    private static double lengthOfFileName(Path path){
+        int length = 0;
+        List<File> files = Arrays.stream((path.toFile().listFiles())).collect(Collectors.toList()).stream().filter(File::isFile).collect(Collectors.toList());
+        for(File f: files){
+            length += f.getName().length();
+        }
+        return length;
+    }
+}
 
 
 
