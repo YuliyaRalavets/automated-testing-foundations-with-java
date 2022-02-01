@@ -42,8 +42,7 @@ public class MainTask {
             List<Path> paths = Files.list(path)
                     .sorted(Comparator.comparing((Path p) -> p.toFile().isDirectory()).thenComparing(Path::getFileName))
                     .collect(Collectors.toList());
-            List<Path> dirs = paths
-                    .stream()
+            List<Path> dirs = paths.stream()
                     .filter(p -> p.toFile().isDirectory())
                     .collect(Collectors.toList());
             for (int i = 0; i < paths.size(); i++) {
@@ -88,31 +87,27 @@ public class MainTask {
     }
 
     private static long countOfDirInPath(Path path) {
-        List<File> files = Arrays
-                .stream((path.toFile().listFiles()))
+        List<File> files = Arrays.stream((path.toFile().listFiles()))
                 .collect(Collectors.toList());
-        return files
-                .stream()
+        return files.stream()
                 .filter(File::isDirectory)
                 .count();
     }
 
     private static long countOfFilesInPath(Path path) {
-        List<File> files = Arrays
-                .stream((path.toFile().listFiles()))
+        List<File> files = Arrays.stream((path.toFile().listFiles()))
                 .collect(Collectors.toList());
-        return files
-                .stream()
+        return files.stream()
                 .filter(File::isFile)
                 .count();
     }
 
     private static double lengthOfFileName(Path path){
         int length = 0;
-        List<File> files = Arrays
-                .stream((path.toFile().listFiles()))
+        List<File> files = Arrays.stream((path.toFile().listFiles()))
                 .collect(Collectors.toList())
-                .stream().filter(File::isFile)
+                .stream()
+                .filter(File::isFile)
                 .collect(Collectors.toList());
         for(File f: files){
             length += f.getName().length();
@@ -120,6 +115,3 @@ public class MainTask {
         return length;
     }
 }
-
-
-
