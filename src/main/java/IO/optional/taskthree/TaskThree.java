@@ -15,13 +15,12 @@ public class TaskThree {
         CreatorDirAndFile creatorDirAndFile = new CreatorDirAndFile(dirName);
         String lineFromFile;
         List<String> list = new ArrayList<>();
-        try(BufferedReader bufferedReader = Files.newBufferedReader(Paths.get("D:\\YULIYA\\QA\\EPAM\\automated-testing-foundations-with-java\\src\\main\\java\\IO\\optional\\tasktwo\\TaskTwo.java"))){
+        try(BufferedReader bufferedReader = Files.newBufferedReader(Paths.get("src/main/java/IO/optional/taskthree/TaskThree.java"))){
             do{
                 lineFromFile = bufferedReader.readLine();
                 if (lineFromFile != null)
                     list.add(new StringBuffer((lineFromFile)).reverse().toString());
             } while (lineFromFile != null);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
