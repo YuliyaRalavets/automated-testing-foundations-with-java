@@ -38,8 +38,8 @@ public class CreatorDirAndFile {
     public void writeToFile(List<String> list){
         Charset charset = Charset.forName("UTF-8");
         try (BufferedWriter writer = Files.newBufferedWriter(fileForWritePath(), charset)) {
-            for (String line : list) {
-                writer.write(line);
+            for (String num : list) {
+                writer.write(num);
                 writer.newLine();
             }
         } catch (IOException e) {
