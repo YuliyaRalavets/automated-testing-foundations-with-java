@@ -3,7 +3,7 @@
 <suite name="Smoke" verbose="1" >
     <test name="UsersFieldsCheck"   >
         <classes>
-            <class name="com.google.test.CostFromMailTest" />
+            <class name="com.google.test.UsersFieldsCheckTests" />
         </classes>
     </test>
 </suite>
