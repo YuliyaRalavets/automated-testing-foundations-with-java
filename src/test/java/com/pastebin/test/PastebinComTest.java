@@ -1,4 +1,4 @@
-package test;
+package com.pastebin.test;
 
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
@@ -8,12 +8,12 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pastebincom.PastebinComHome;
-import pastebincom.PastebinComPaste;
+import com.pastebin.page.PastebinComHome;
+import com.pastebin.page.PastebinComPaste;
 
 public class PastebinComTest {
     private WebDriver driver;
-    PastebinComPaste pastePage;
+    private PastebinComPaste pastePage;
 
 //@BeforeSuite - Эта аннотация помечает точку входа при запуске.
 // Аннотацию @BeforeSuite в TestNG можно использовать для выполнения общих функций, таких как настройка и запуск Selenium или удалённых веб-драйверов и т.д.
@@ -56,10 +56,11 @@ public class PastebinComTest {
         Assert.assertEquals(actual, expected);
     }
 
-    /*@AfterTest //предоставление результатов выполнения тестов(отчет,например)
+    //AfterTest //предоставление результатов выполнения тестов(отчет,например)
     //@AfterClass - осле последнего тестового метода в текущем классе.
     //Эта аннотация в TestNG может использоваться для выполнения действий по очистке ресурсов после выполнения теста, таких как закрытие драйвера и т.п.
-    public void browserClose() {
+
+    /*public void browserClose() {
         driver.quit();
         driver = null;
     }*/
