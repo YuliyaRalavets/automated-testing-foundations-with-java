@@ -55,7 +55,7 @@ public class GoogleCloudCalculatorHomePage extends BasePage {
         return new GoogleCloudCalculatorResultPage(driver);
     }
 
-    private GoogleCloudCalculatorHomePage setCalculatorForm(User user) {
+    private void setCalculatorForm(User user) {
         setComputeEngine();
         setNumbersOfInstance(user);
         setOperationSystem();
@@ -68,7 +68,6 @@ public class GoogleCloudCalculatorHomePage extends BasePage {
         setLocalSSD();
         setDatacenterLocation();
         setCommitedUsage();
-        return this;
     }
 
     public void setComputeEngine(){

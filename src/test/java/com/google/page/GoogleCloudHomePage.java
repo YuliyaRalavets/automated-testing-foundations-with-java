@@ -11,6 +11,7 @@ public class GoogleCloudHomePage extends BasePage {
 
     private By searchBox = By.name("q");
     private final Logger logger = LogManager.getRootLogger();
+
     public GoogleCloudHomePage(WebDriver driver) {
         super(driver);
     }

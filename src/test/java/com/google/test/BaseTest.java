@@ -26,6 +26,5 @@ public class BaseTest {
         DriverSingleton.closeDriver();
     }
 }
-//mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src\test\resources\testng-all.xml -Denvironment=dev clean test
-//mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src\test\resources\testng-smoke.xml -Denvironment=dev clean test
+
 

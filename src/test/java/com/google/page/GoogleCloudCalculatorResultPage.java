@@ -57,16 +57,15 @@ public class GoogleCloudCalculatorResultPage extends BasePage {
         return getHandle();
     }
 
-    public GoogleCloudCalculatorResultPage sendMail(String mailAddress) {
+    public void sendMail(String mailAddress) {
         this.switchToFrames();
         findElementForClick(emailEstimateBtn).click();
         sendTextInTextField(emailInputField, mailAddress);
         findElementForClick(sendEmailBtn).click();
         logger.info("Sent email to generated mailbox email to generated mailbox");
-        return this;
     }
 
-    public void switchToFrames(){
+    private void switchToFrames(){
         switchToFrameWithIndex(0);
         switchToFrameWithNameOrId("myFrame");
     }
